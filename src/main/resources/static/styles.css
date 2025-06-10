@@ -1,0 +1,189 @@
+:root{
+    --bg-gradient: linear-gradient(135deg, #01d9e9, #006aff);
+    --card-bg: rgba(255,255,255,0.2);
+    --text-color: #333;
+    --button-bg:#00c6ff;
+    --button-hover: #0072ff;
+    --glass-border:rgba(255,255,255,0.4);
+}
+body.dark-mode{
+    --bg-gradient: linear-gradient(135deg, #585858, #141413);
+    --card-bg: rgba(0,0,0,0.3);
+    --text-color:#ecf0f1;
+    --button-bg: #00c6ff; 
+    --button-hover:#0072ff;
+    --glass-border:rgba(255,255,255,0.4);
+
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    overflow: hidden;
+    transition: background 0.5s, color 0.5s;
+}
+.weather-card{
+    text-align: center;
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 17px;
+    box-shadow: 0px 8px 32px rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    width: 90%;
+    max-width: 400px;
+    animation: fadeIn 1s ease-in-out;
+}
+header{
+    margin-bottom: 15px;
+}
+.suggestions-box {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background: white;
+    width: 200px;
+    display: none; /* slepiam kol nėra pasiūlymų */
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+header h1{
+    font-size: 24px;
+    display: flex;
+align-items: center;
+}
+header h1 i {
+    margin-right: 10px;
+}
+.toggle-btn{
+    background: none;
+    border: none;
+    font-size:26px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: transform 0.3s;
+}
+.toggle-btn.hover{
+    transform: rotate(20deg);
+}
+.search-box{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.search-box input{
+    padding:10px;
+border-radius: 5px 0 0 5px;
+border: none;
+outline: none;
+width: 70%;
+font-size: 16px;
+}
+.search-box button{
+    padding: 10px;
+    background:#333;
+    border: none;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+.hourly-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.moon-phase {
+    margin-top: 8px;
+    font-size: 14px;
+}
+.moon-phase i {
+    margin-right: 5px;
+    color: #888;
+}
+
+.search-box button:hover{
+    background: var(--button-hover);
+}
+
+.weather-info {
+    margin-top:20px;
+}
+.weather-info h2{
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.weather-icon{
+    width: 80px;
+    height:80px;
+    margin:10px auto;
+display: block;
+animation: fadeIn 1s ease-in-out;
+}
+.temperature{
+    font-size: 30px;
+font-weight: bold;
+margin: 10px 0;
+}
+.header-content h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.weekdays {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.day-btn {
+    padding: 7px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #096d946b;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.day-btn:hover {
+    background-color: #ffffff50;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}

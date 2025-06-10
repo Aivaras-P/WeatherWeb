@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+        <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="weather-app">
+        <div class="weather-card">
+            <header>
+            <div class="header-content">
+        <h1>Weather Forecast</h1><br>
+        <button id="theme-toggle" class="toggle-btn">
+            <i class="fas fa-moon"></i>
+        </button>
+        </div>
+        </header>
+            <div class="hourly-chart-container">
+                <canvas id="hourlyChart"></canvas>
+            </div>
+        
+<main>
+
+    <div class="search-box">
+        <input type="text" id="citySearch" placeholder="Search for a city...">
+        <button id="searchBtn">Search</button>
+        <div id="suggestions" class="suggestions-box"></div>
+        </div>
+        <div id="currentWeather" class="weather-box"></div>
+     <div class="weather-info">
+        <h2 id="city-name"></h2>
+        <div class="weekdays">
+    <button class="day-btn" id="mondayBtn">Mon</button>
+    <button class="day-btn" id="tuesdayBtn">Tue</button>
+    <button class="day-btn" id="wednesdayBtn">Wed</button>
+    <button class="day-btn" id="thursdayBtn">Thu</button>
+    <button class="day-btn" id="fridayBtn">Fri</button>
+    <button class="day-btn" id="saturdayBtn">Sat</button>
+    <button class="day-btn" id="sundayBtn">Sun</button>
+</div>
+        <img src="" alt="weather Icon" id="weather-icon" class="weather-icon">
+        <p id="weather-description">Weather Description</p>
+        
+        <div class="temperature">
+            <span class="temperature-value">  <span class="speed-value">  --</span> C </span>
+            
+        </div>
+     </div>
+<div class="humidity">
+  <p>
+    <span class="humidity-value">
+      <i class="fas fa-burn"></i> -- %
+    </span>
+  </p>
+</div>
+<div class="wind-speed">
+  <p>
+    <span class="speed-value">
+      <i class="fas fa-wind wind-icon"></i> -- km/h
+    </span>
+  </p>
+</div>
+    <div class="moon-phase">
+        <i class="fas fa-moon"></i>
+        <span class="moon-label">Moon phase:</span>
+        <span class="moon-value">-</span>
+    </div>
+    <div class="sunrise">
+        <i class="fas fa-sun"></i>
+        <span class="sun-label">Sunrise:</span>
+        <span class="sun-value">-</span>
+    </div>
+
+    <div class="sunset">
+        <i class="fas fa-mountain-sun"></i>
+        <span class="sunset-label">Sunset:</span>
+        <span class="sunset-value">-</span>
+    </div>
+    <div class="air-quality">
+  <p>Air Quality:  <span class="quality-value"> -- </span></p>
+</div>
+    </main>
+</div>
+</div>
+</body>
+
+</html>
