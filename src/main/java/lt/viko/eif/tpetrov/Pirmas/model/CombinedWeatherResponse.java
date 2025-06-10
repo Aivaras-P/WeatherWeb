@@ -1,77 +1,53 @@
 package lt.viko.eif.tpetrov.Pirmas.model;
 
-import lt.viko.eif.tpetrov.Pirmas.model.openweather.AirQualityResponse;
-import lt.viko.eif.tpetrov.Pirmas.model.openweather.CurrentWeatherResponse;
-import lt.viko.eif.tpetrov.Pirmas.model.openweather.ForecastResponse;
-import lt.viko.eif.tpetrov.Pirmas.model.weatherapi.MoonPhaseResponse;
+import lt.viko.eif.tpetrov.Pirmas.model.openweather.*;
+import lt.viko.eif.tpetrov.Pirmas.model.visualcrossing.MoonPhaseResponse;
+import lt.viko.eif.tpetrov.Pirmas.model.weatherapi.*;
+
 
 /**
  * Combines weather data from multiple sources into a single response object.
- * <p>
- * This includes:
- * <ul>
- *     <li>Current weather</li>
- *     <li>Moon phase and sunrise/sunset times</li>
- *     <li>7-day forecast</li>
- *     <li>Air quality index</li>
- * </ul>
- * </p>
  */
 public class CombinedWeatherResponse {
     private CurrentWeatherResponse current;
     private MoonPhaseResponse moon;
     private ForecastResponse forecast;
+    private ForecastResponse hourly;
     private AirQualityResponse air;
+    private CityLocation[] suggestions;
 
-    /**
-     * Constructs a combined weather response.
-     *
-     * @param current  the current weather data
-     * @param moon     the moon and astronomy data
-     * @param forecast the 7-day forecast data
-     * @param air      the air quality data
-     */
     public CombinedWeatherResponse(CurrentWeatherResponse current, MoonPhaseResponse moon,
-                                   ForecastResponse forecast, AirQualityResponse air) {
+                                   ForecastResponse forecast, ForecastResponse hourly,
+                                   AirQualityResponse air, CityLocation[] suggestions) {
         this.current = current;
         this.moon = moon;
         this.forecast = forecast;
+        this.hourly = hourly;
         this.air = air;
+        this.suggestions = suggestions;
     }
 
-    /**
-     * Returns the current weather data.
-     *
-     * @return {@link CurrentWeatherResponse}
-     */
     public CurrentWeatherResponse getCurrent() {
         return current;
     }
 
-    /**
-     * Returns the moon and astronomy data.
-     *
-     * @return {@link MoonPhaseResponse}
-     */
     public MoonPhaseResponse getMoon() {
         return moon;
     }
 
-    /**
-     * Returns the 7-day forecast data.
-     *
-     * @return {@link ForecastResponse}
-     */
     public ForecastResponse getForecast() {
         return forecast;
     }
 
-    /**
-     * Returns the air quality data.
-     *
-     * @return {@link AirQualityResponse}
-     */
+    public ForecastResponse getHourly() {
+        return hourly;
+    }
+
     public AirQualityResponse getAir() {
         return air;
+    }
+
+    public CityLocation[] getSuggestions() {
+        return suggestions;
     }
 }
