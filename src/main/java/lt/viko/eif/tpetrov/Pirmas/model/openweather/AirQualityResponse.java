@@ -1,4 +1,4 @@
-package lt.viko.eif.tpetrov.Pirmas.model.weatherapi;
+package lt.viko.eif.tpetrov.Pirmas.model.openweather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
