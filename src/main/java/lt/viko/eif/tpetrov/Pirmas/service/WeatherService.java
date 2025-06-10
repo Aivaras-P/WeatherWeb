@@ -31,6 +31,9 @@ public class WeatherService {
     @Value("${visualcrossing.api.key}")
     private String visualCrossingApiKey;
 
+    @Value("${weather.api.key}")
+    private String weatherApi;
+
     /**
      * HTTP client used for sending requests to external APIs.
      */
@@ -84,15 +87,11 @@ public class WeatherService {
      * @param lon longitude of the location
      * @return {@link AirQualityResponse} with AQI data
      */
-    public AirQualityResponse getAirQuality(double lat, double lon) {
-        String date = LocalDate.now().toString(); // Cia reikejo string'a padaryti
-
-        String url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-                + lat + "," + lon
-                + "/" + date
-                + "?key=" + visualCrossingApiKey
-                + "&include=obs,alerts"
-                + "&elements=aqi";
+public AirQualityResponse getAirQuality(double lat, double lon) {
+        String url = "http://api.weatherapi.com/v1/current.json"
+                + "?key=" + weatherApi  // pakeiskite kintamojo pavadinimą
+                + "&q=" + lat + "," + lon
+                + "&aqi=yes";  // įjungia oro kokybės duomenis
 
         return restTemplate.getForObject(url, AirQualityResponse.class);
     }
