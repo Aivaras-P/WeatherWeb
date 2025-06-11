@@ -309,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
           forecastData = data;
+          window.forecastData = data;
           updateWeather(0);
 
           const m = pad(today.getMonth() + 1);
