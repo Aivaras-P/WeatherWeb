@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
         <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 <body>
     <div class="weather-app">
@@ -21,9 +22,7 @@
         </button>
         </div>
         </header>
-            <div class="hourly-chart-container">
-                <canvas id="hourlyChart"></canvas>
-            </div>
+
         
 <main>
 
@@ -48,10 +47,15 @@
         <p id="weather-description">Weather Description</p>
         
         <div class="temperature">
-            <span class="temperature-value">  <span class="speed-value">  --</span> C </span>
-            
+            <span class="temperature-value">  <span class="speed-value">  --</span> °C </span>
         </div>
      </div>
+    <div id="feels-like-container" style="display: none;">
+        Feels like: <strong><span id="feels-like">...</span> °C</strong>
+    </div>
+    <div id="night-temp-container" style="display: none;">
+        Night Temperature: <strong><span id="night-temp" class="highlight-temp">°C</span> </strong>
+    </div>
 <div class="humidity">
   <p>
     <span class="humidity-value">
@@ -85,6 +89,10 @@
     <div class="air-quality">
   <p>Air Quality:  <span class="quality-value"> -- </span></p>
 </div>
+    <div class="hourly-chart-container">
+        <canvas id="hourlyChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </main>
 </div>
 </div>
