@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cityNameElem = document.getElementById('city-name');
   const weatherIconElem = document.getElementById('weather-icon');
   const weatherDescElem = document.getElementById('weather-description');
+  const feelsLikeContainer = document.getElementById("feels-like-container");
   const tempValueElem = document.querySelector('.temperature .speed-value');
   const rainChanceElem = document.querySelector('.rain-chance .chance-value');
   const windSpeedElem = document.querySelector('.wind-speed .speed-value');
@@ -170,6 +171,26 @@ document.addEventListener('DOMContentLoaded', () => {
         hourlyChartInstance = null;
       }
     }
+    if (dayIndex === 0 && forecastData.current?.main?.feels_like !== undefined) {
+      const feelsLike = forecastData.current.main.feels_like;
+      document.getElementById("feels-like").textContent = feelsLike.toFixed(1);
+      feelsLikeContainer.style.display = "block";
+
+      document.getElementById("night-temp-container").style.display = "none";
+
+    } else if (dayIndex !== 0 && day.temp) {
+
+      document.getElementById("night-temp").innerHTML = `${day.temp.night.toFixed(1)} &deg;C`;
+      document.getElementById("night-temp-container").style.display = "block";
+      feelsLikeContainer.style.display = "none";
+
+    } else {
+
+      feelsLikeContainer.style.display = "none";
+      document.getElementById("night-temp-container").style.display = "none";
+    }
+
+
   }
 
 
@@ -192,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('hourlyChart').getContext('2d');
 
     if (hourlyChartInstance) {
-      hourlyChartInstance.destroy(); // Išvalom seną grafiką
+      hourlyChartInstance.destroy();
     }
 
     hourlyChartInstance = new Chart(ctx, {
