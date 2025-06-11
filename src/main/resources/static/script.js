@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchBtn = document.getElementById('searchBtn');
-  const cityInput = document.getElementById('cityInput');
+  const citySearch = document.getElementById('citySearch');
+  const suggestionsBox = document.getElementById('suggestions');
   const cityNameElem = document.getElementById('city-name');
   const weatherIconElem = document.getElementById('weather-icon');
   const weatherDescElem = document.getElementById('weather-description');
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return num.toString().padStart(2, '0');
   }
 
-  // Pakeičiam mygtukų tekstą pagal šiandieną
+
   dayButtons.forEach((btn, idx) => {
     const currentDay = new Date(today);
     currentDay.setDate(today.getDate() + idx);
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     if (pathParts.length >= 1) {
       const cityFromURL = pathParts[0];
-      cityInput.value = cityFromURL;
+      citySearch.value = cityFromURL;
 
       fetch(`http://localhost:8085/api/weather/${cityFromURL}`)
           .then(res => {
@@ -246,8 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const citySearch = document.getElementById('citySearch');
-  const suggestionsBox = document.getElementById('suggestions');
+
 
   citySearch.addEventListener('input', async () => {
     const query = citySearch.value.trim();
