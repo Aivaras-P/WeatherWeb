@@ -1,8 +1,10 @@
 package lt.viko.eif.tpetrov.Pirmas.service;
 
 import lt.viko.eif.tpetrov.Pirmas.model.openweather.*;
+import lt.viko.eif.tpetrov.Pirmas.model.visualcrossing.MoonPhaseResponse;
 import lt.viko.eif.tpetrov.Pirmas.model.weatherapi.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,11 +29,13 @@ public class WeatherService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    @Cacheable("currentWeather")
     public CurrentWeatherResponse getCurrentWeather(String city) {
         String url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + openWeatherKey + "&units=metric";
         return restTemplate.getForObject(url, CurrentWeatherResponse.class);
     }
 
+    @Cacheable("moonPhase")
     public MoonPhaseResponse getMoonPhase(String city) {
         String startDate = LocalDate.now().toString();
         String endDate = LocalDate.now().plusDays(6).toString();
@@ -44,20 +48,20 @@ public class WeatherService {
         return restTemplate.getForObject(url, MoonPhaseResponse.class);
     }
 
-
+    @Cacheable(value = "sevenDayForecast", key = "#lat + '-' + #lon")
     public ForecastResponse getSevenDayForecast(double lat, double lon) {
         String url = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&appid=" + openWeatherKey + "&units=metric";
         return restTemplate.getForObject(url, ForecastResponse.class);
     }
 
-
+    @Cacheable(value = "todayHourlyForecast", key = "#lat + '-' + #lon")
     public ForecastResponse getTodayHourlyForecast(double lat, double lon) {
         String url = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon
                 + "&exclude=current,minutely,daily,alerts&appid=" + openWeatherKey + "&units=metric";
         return restTemplate.getForObject(url, ForecastResponse.class);
     }
 
-
+    @Cacheable(value = "airQuality", key = "#lat + '-' + #lon")
     public AirQualityResponse getAirQuality(double lat, double lon) {
         String url = "http://api.weatherapi.com/v1/current.json"
                 + "?key=" + weatherApiKey
@@ -67,7 +71,7 @@ public class WeatherService {
         return restTemplate.getForObject(url, AirQualityResponse.class);
     }
 
-
+    @Cacheable(value = "cityAutocomplete", key = "#query")
     public CityLocation[] getCityAutocomplete(String query) {
         String url = "http://api.openweathermap.org/geo/1.0/direct?q=" + query + "&limit=5&appid=" + openWeatherKey;
         return restTemplate.getForObject(url, CityLocation[].class);
